@@ -1,0 +1,36 @@
+<form method="get" action="">
+
+    <label for="content_q">Search in content: </label>
+    <input type="text" name="content_q">
+    <br>
+
+    <!-- <label for="title_q">Search in title: </label>
+    <input type="text" name="title_q">
+    <br> -->
+    
+    <label for="title">Select a title</label>
+    <select name="title" id="title">
+        <option value="">--Any--</option>
+        {% for post in posts %}
+        <option value="{{ post.title }}">{{ post.title }}</option>
+        {% endfor %}
+    </select>
+    <br>
+
+    <button type="submit">Search</button>
+
+</form>
+
+<h1>Blog Posts</h1>
+    <ul>
+        {% for post in posts %}
+            <li>
+                <a href="{% url 'blog:post_detail' post.id %}"><h2>{{ post.title }}</h2></a> 
+                <!-- href="/blog/{{post.id}}" alternatively-->
+                <img src="{{post.image.url }}" alt="post_image">
+                <p>{{ post.content }}</p>
+                <p>Category: {{ post.category }}</p>
+                <p>Published on: {{ post.created_at }}</p>
+            </li>
+        {% endfor %}
+    </ul>
