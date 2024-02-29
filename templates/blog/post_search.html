@@ -1,5 +1,6 @@
 <form method="get" action="">
 
+    {% csrf_token %}
     <label for="content_q">Search in content: </label>
     <input type="text" name="content_q">
     <br>
@@ -8,8 +9,8 @@
     <input type="text" name="title_q">
     <br> -->
     
-    <label for="title">Select a title</label>
-    <select name="title" id="title">
+    <label for="title_q">Select a title</label>
+    <select name="title_q" id="title_q">
         <option value="">--Any--</option>
         {% for post in posts %}
         <option value="{{ post.title }}">{{ post.title }}</option>
@@ -20,6 +21,8 @@
     <button type="submit">Search</button>
 
 </form>
+
+<a href="{% url 'blog:post_list' %}">Post Lists</a>
 
 <h1>Blog Posts</h1>
     <ul>

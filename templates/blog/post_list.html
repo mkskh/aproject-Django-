@@ -7,6 +7,17 @@
     <title>Blog Post List</title>
 </head>
 <body>
+
+    <form method="get" action="{% url 'blog:post_list' %}">
+        <!-- {% csrf_token %} -->
+        {{ form.as_p }}
+
+        <button type="submit">Search</button>
+    </form>
+
+    <br>
+    <a href="{% url 'blog:post_create' %}">Create a post</a>
+
     <h1>Blog Posts</h1>
     <ul>
         {% for post in posts %}
